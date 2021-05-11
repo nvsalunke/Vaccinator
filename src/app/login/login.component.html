@@ -23,11 +23,9 @@
 <div class="text-center">
   <mat-form-field appearance="fill">
     <mat-label>Choose a date</mat-label>
-  <!-- #docregion toggle -->
     <input matInput [matDatepicker]="picker" [(ngModel)]="date">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
-  <!-- #enddocregion toggle -->
   </mat-form-field>  
   <mat-radio-group style="padding-left: 24px;" aria-label="Select minimum age" [(ngModel)]="age">
     <mat-radio-button value="18" [checked]="'true'">18+</mat-radio-button>
