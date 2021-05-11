@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       console.log(params);
-      this.interval = params['interval'] ? params['interval'] : 5000;
+      this.interval = params['interval'] ? params['interval'] : 3000;
 
       setInterval(() => {
         this.GetByDistrict();
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
         this.filterData();
       },
       error => {
-        console.log(error);
+        alert('OpenAPI limit reached! Please try after 5 minutes');
       }
     );
     // alert('Sent OTP on number ' + this.mobileNumber);
