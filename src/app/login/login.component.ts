@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Login } from '../models/login.model';
 import { VaccineService } from '../services/vaccine.service';
 
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   displayedColumns: string[] = [ 'pincode','name', 'address', 'available'];
   lastRefresh: Date = new Date();
 
-  constructor(private vaccineService: VaccineService) { }
+  constructor(private vaccineService: VaccineService,private route: ActivatedRoute) { }
 
   mobileNumber: string = "8956594649";
   otp: string = "";
@@ -37,6 +38,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.route.queryParams
+      .subscribe(params => {
+        console.log(params); });
+
     setInterval(() => {
       this.GetByDistrict();
       this.lastRefresh = new Date();
@@ -58,7 +64,7 @@ export class LoginComponent implements OnInit {
   }
   filterData() {
     this.centers = this.response.centers.filter(center => {
-      return center.sessions.length > 1 && center.sessions.some(s => s.min_age_limit == this.age && (!this.showAvailable || s.available_capacity > 0));
+      return center.sessions.length > 0 && center.sessions.some(s => s.min_age_limit == this.age && (!this.showAvailable || s.available_capacity > 0));
     });
   }
 

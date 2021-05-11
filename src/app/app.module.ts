@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from './login/material-module';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,10 @@ import { DemoMaterialModule } from './login/material-module';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    RouterModule.forRoot([]),
     DemoMaterialModule,
     MatNativeDateModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
