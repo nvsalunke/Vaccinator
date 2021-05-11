@@ -31,6 +31,7 @@
     <mat-radio-button value="18" [checked]="'true'">18+</mat-radio-button>
     <mat-radio-button value="45">45+</mat-radio-button>
   </mat-radio-group>
+  <mat-slide-toggle style="padding-left: 24px;" [(ngModel)]="showAvailable" (change)="GetByDistrict">Show only Available?</mat-slide-toggle>
 
   <button style="padding-left: 24px;" mat-button color="primary" (click)="GetByDistrict()">Search</button>
 </div>

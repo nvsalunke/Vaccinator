@@ -25,9 +25,10 @@ export class LoginComponent implements OnInit {
   model = new Login(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
 
   submitted = false;
+  showAvailable = false;
 
   date: any = new Date();
-  age = 18;
+  age = 45;
 
   onSubmit() { this.submitted = true; }
 
@@ -57,7 +58,7 @@ export class LoginComponent implements OnInit {
   }
   filterData() {
     this.centers = this.response.centers.filter(center => {
-      return center.sessions.length > 1 && center.sessions.some(s => s.min_age_limit == this.age && s.available_capacity > 0);
+      return center.sessions.length > 1 && center.sessions.some(s => s.min_age_limit == this.age && (!this.showAvailable || s.available_capacity > 0));
     });
   }
 
