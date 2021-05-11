@@ -12,16 +12,17 @@ export class LoginComponent implements OnInit {
   centers: any;
   response: any;
 
-  displayedColumns: string[] = [ 'pincode','name', 'address', 'available'];
+  displayedColumns: string[] = ['pincode', 'name', 'address', 'available'];
   lastRefresh: Date = new Date();
+  interval: number = 5000;
 
-  constructor(private vaccineService: VaccineService,private route: ActivatedRoute) { }
+  constructor(private vaccineService: VaccineService, private route: ActivatedRoute) { }
 
   mobileNumber: string = "8956594649";
   otp: string = "";
 
   powers = ['Really Smart', 'Super Flexible',
-            'Super Hot', 'Weather Changer'];
+    'Super Hot', 'Weather Changer'];
 
   model = new Login(18, 'Dr IQ', this.powers[0], 'Chuck Overstreet');
 
@@ -39,14 +40,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params); });
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+      this.interval = params['interval'] ? params['interval'] : 5000;
 
-    setInterval(() => {
-      this.GetByDistrict();
-      this.lastRefresh = new Date();
-    }, 5000);
+      setInterval(() => {
+        this.GetByDistrict();
+        this.lastRefresh = new Date();
+      }, this.interval);
+    });
     this.GetByDistrict();
   }
 
@@ -57,7 +59,8 @@ export class LoginComponent implements OnInit {
         this.response = result;
         this.filterData();
       },
-      error => { console.log(error);
+      error => {
+        console.log(error);
       }
     );
     // alert('Sent OTP on number ' + this.mobileNumber);

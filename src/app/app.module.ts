@@ -21,6 +21,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
     RouterModule.forRoot([]),
     DemoMaterialModule,
     MatNativeDateModule,
