@@ -4,7 +4,7 @@
     <UserSecretsId>dotnet-Worker-714897CF-F972-4579-ACA7-1FEF8A6B7563</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.12" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     <PackageReference Include="Telegram.Bot" Version="15.7.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
