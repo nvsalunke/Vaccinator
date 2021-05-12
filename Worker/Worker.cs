@@ -40,7 +40,7 @@ namespace VaccinatorWorker
 
                     vaccineCenters.centers.ForEach(center =>
                     {
-                        if (center?.sessions?.Count > 0 && center.sessions.Any(s => s.available_capacity >= 0))
+                        if (center?.sessions?.Count > 0 && center.sessions.Any(s => s.available_capacity > 0))
                         {
                             SendMessageToChannel(center);
                         }
@@ -51,7 +51,7 @@ namespace VaccinatorWorker
                 }
                 catch(Exception e)
                 {
-                    _logger.LogError(e);
+                    _logger.LogError(e.Message);
                 }
                 
                 await Task.Delay(1000, stoppingToken);
@@ -60,7 +60,7 @@ namespace VaccinatorWorker
 
         private void SendMessageToChannel(Center center)
         {
-            center.sessions.Where(s => s.available_capacity >= 0).ToList().ForEach(async s =>
+            center.sessions.Where(s => s.available_capacity > 0).ToList().ForEach(async s =>
             {
                 await _botClient.SendTextMessageAsync(
                                       chatId: -1001330823433,
