@@ -30,7 +30,7 @@ namespace VaccinatorWorker
         {
             await _botClient.SendTextMessageAsync(
                                       chatId: _channelChatId,
-                                      text: $"Vaccinator started...");
+                                      text: $"Vaccinator started at: {DateTime.Now}");
 
             while (!stoppingToken.IsCancellationRequested)
             {
@@ -50,12 +50,14 @@ namespace VaccinatorWorker
                     _logger.LogError(e.Message);
                 }
                 
-                await Task.Delay(1000, stoppingToken);
+                await Task.Delay(3000, stoppingToken);
+                
             }
 
             await _botClient.SendTextMessageAsync(
                                       chatId: _channelChatId,
-                                      text: $"Vaccinator stopped...");
+                                      text: $"Vaccinator stopped at: {DateTime.Now}");
+            _logger.LogWarning($"Stopped at: {DateTime.Now}");
         }
 
         private async Task Processs(string date)
