@@ -2,7 +2,6 @@
 
 namespace VaccinatorWorker
 {
-    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class Session
     {
         public string session_id { get; set; }
@@ -11,6 +10,14 @@ namespace VaccinatorWorker
         public int min_age_limit { get; set; }
         public string vaccine { get; set; }
         public List<string> slots { get; set; }
+        public int available_capacity_dose1 { get; set; }
+        public int available_capacity_dose2 { get; set; }
+    }
+
+    public class VaccineFee
+    {
+        public string vaccine { get; set; }
+        public string fee { get; set; }
     }
 
     public class Center
@@ -28,6 +35,7 @@ namespace VaccinatorWorker
         public string to { get; set; }
         public string fee_type { get; set; }
         public List<Session> sessions { get; set; }
+        public List<VaccineFee> vaccine_fees { get; set; }
     }
 
     public class Response
